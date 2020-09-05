@@ -1,6 +1,6 @@
 import pytest
 
-from pytemplate_reverse import ReverseTemplate
+from template_reverse import ReverseTemplate
 from uuid import uuid4
 
 

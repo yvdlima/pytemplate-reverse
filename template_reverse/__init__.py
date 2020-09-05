@@ -1,8 +1,3 @@
-import logging
-
-logger = logging.getLogger("remora.FileScanner.ReverseTemplate")
-
-
 class ReverseTemplate:
     """
     reverse-engineer the values of a string based on a template
@@ -23,9 +18,8 @@ class ReverseTemplate:
             if init_pos == -1:
                 break
 
-            if (
-                end_pos := self.template.find(self.token_sep[1], init_pos)
-            ) and end_pos > -1:
+            end_pos = self.template.find(self.token_sep[1], init_pos)
+            if end_pos > -1:
                 token_name = self.template[init_pos + 1 : end_pos]
                 init_pos = end_pos
 
@@ -56,7 +50,7 @@ class ReverseTemplate:
 
         return self.template[t1_at + len(t1) : t2_at]
 
-        def reverse(self, str_to_convert):
+    def reverse(self, str_to_convert):
         if not self.tokens:
             return {}
 

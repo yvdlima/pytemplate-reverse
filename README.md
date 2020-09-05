@@ -7,7 +7,7 @@ Reverse-engineer a string based on a template, can be usefull to extract informa
 Usage sample:
 
 ``` python
-from pytemplate_reverse import ReverseTemplate
+from template_reverse import ReverseTemplate
 
 segments = [
     "shrek3_0_600.avi",
@@ -30,7 +30,7 @@ print("Total video duration so far", total_duration)
 
 Requires Python 3.
 
-This package is simple enough that it should work with any version. I recommend you to install python using (pyenv)[https://github.com/pyenv/pyenv] with (pyenv-virtualenv)[https://github.com/pyenv/pyenv-virtualenv]. If you are on windows check (pyenv-win)[https://github.com/pyenv-win/pyenv-win] out.
+This package is simple enough that it should work with any version. I recommend you to install python using [pyenv](https://github.com/pyenv/pyenv) with [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv). If you are on windows check [pyenv-win](https://github.com/pyenv-win/pyenv-win) out.
 
 ## Install 
 
