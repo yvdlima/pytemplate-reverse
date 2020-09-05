@@ -1,7 +1,7 @@
 # pytemplate-reverse
 
 [![PyPI version](https://badge.fury.io/py/pytemplate-reverse.svg)](https://badge.fury.io/py/pytemplate-reverse)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fyvdlima%2Fpytemplate-reverse%2Fbadge%3Fref%3Dmaster&style=flat-square)](https://actions-badge.atrox.dev/yvdlima/pytemplate-reverse/goto?ref=master)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fyvdlima%2Fpytemplate-reverse%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/yvdlima/pytemplate-reverse/goto?ref=master)
 [![codecov](https://codecov.io/gh/yvdlima/pytemplate-reverse/branch/master/graph/badge.svg)](https://codecov.io/gh/yvdlima/pytemplate-reverse)
 
 A package to "reverse-enginner" simple strings based on a template.
@@ -30,13 +30,13 @@ for segment in segments:
 print("Total video duration so far", total_duration)
 ```
 
-# Build locally
+## Build locally
 
 Requires Python 3.
 
 This package is simple enough that it should work with any version. I recommend you to install python using [pyenv](https://github.com/pyenv/pyenv) with [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv). If you are on windows check [pyenv-win](https://github.com/pyenv-win/pyenv-win) out.
 
-## Install 
+### Install 
 
 ``` bash
 cd /path/to/pytemplate-reverse
@@ -54,6 +54,6 @@ pytest
 
 To get coverage and lint run pytest with the following plugins:
 
-``` 
+``` bash
 pytest --black --cov=template_reverse
 ```
