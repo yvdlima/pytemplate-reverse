@@ -1,11 +1,15 @@
-class ReverseTemplate:
-    """
-    reverse-engineer the values of a string based on a template
-    """
+"""reverse-engineer the values of a string based on a template"""
 
+
+class ReverseTemplate:
     token_sep = ("{", "}")
 
     def __init__(self, template: str):
+        """
+        :param template: The template string to use when reversing strings to values.
+
+        :raises ValueError: if there is a duplicated token in the template!
+        """
         self.template: str = template
         self.tokens = []
         self._parse_template_tokens()
