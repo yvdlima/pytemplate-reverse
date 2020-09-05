@@ -51,5 +51,5 @@ pytest
 To get coverage and lint run pytest with the following plugins:
 
 ``` 
-pytest --black --cov=src
+pytest --black --cov=template_reverse
 ```
