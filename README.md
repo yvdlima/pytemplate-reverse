@@ -1,5 +1,9 @@
 # pytemplate-reverse
 
+[![PyPI version](https://badge.fury.io/py/pytemplate-reverse.svg)](https://badge.fury.io/py/pytemplate-reverse)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fyvdlima%2Fpytemplate-reverse%2Fbadge%3Fref%3Dmaster&style=flat-square)](https://actions-badge.atrox.dev/yvdlima/pytemplate-reverse/goto?ref=master)
+[![codecov](https://codecov.io/gh/yvdlima/pytemplate-reverse/branch/master/graph/badge.svg)](https://codecov.io/gh/yvdlima/pytemplate-reverse)
+
 A package to "reverse-enginner" simple strings based on a template.
 
 Reverse-engineer a string based on a template, can be usefull to extract information from a generated string when you know how the information will be formated in said string, like the a file name. 
