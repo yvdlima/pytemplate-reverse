@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pytemplate_reverse",
-    version="0.0.2",
+    version="0.0.3",
     author="Yuri Vinicius Didone de Lima",
     author_email="yuri.vdl@gmail.com",
     description="Reverse-engineer the values of a string based on a template",

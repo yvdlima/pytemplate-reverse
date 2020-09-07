@@ -73,6 +73,37 @@ def test_static_then_end():
     assert values["final"] == "THEEND"
 
 
+def test_repeat_reverse_works():
+    rt = ReverseTemplate("There is {from?} to {what?} here")
+
+    assert rt.reverse("There is little to nothing here")["what?"] == "nothing"
+    assert rt.reverse("There is little to something here")["what?"] == "something"
+    assert rt.reverse("There is little to much stuff here")["what?"] == "much stuff"
+    assert rt.reverse("There is little to nothing here")["what?"] == "nothing"
+
+
+def test_check_if_cache_worked():
+    rt = ReverseTemplate("<h3>The player {name} scored {score} points!</h3>")
+
+    assert rt._ReverseTemplate__get_full_token_cache == {}
+    assert rt._ReverseTemplate__get_str_between_tokens_cache == {}
+    assert rt._ReverseTemplate__get_str_after_last_token_cache == None
+
+    values = rt.reverse("<h3>The player Koala scored -986 points!</h3>")
+
+    assert values["name"] == "Koala"
+    assert values["score"] == "-986"
+
+    assert rt._ReverseTemplate__get_full_token_cache["name"] == "{name}"
+    assert rt._ReverseTemplate__get_full_token_cache["score"] == "{score}"
+
+    assert (
+        rt._ReverseTemplate__get_str_between_tokens_cache["{name}{score}"] == " scored "
+    )
+
+    assert rt._ReverseTemplate__get_str_after_last_token_cache == " points!</h3>"
+
+
 def test_no_tokens():
     rt = ReverseTemplate("¯\\_(ツ)_/¯")
 
