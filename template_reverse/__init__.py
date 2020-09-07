@@ -12,9 +12,12 @@ class ReverseTemplate:
         """
         self.template: str = template
         self.tokens = []
-        self._parse_template_tokens()
+        self.__get_full_token_cache = {}
+        self.__get_str_after_last_token_cache = None
+        self.__get_str_between_tokens_cache = {}
+        self.__parse_template_tokens()
 
-    def _parse_template_tokens(self):
+    def __parse_template_tokens(self):
         init_pos = 0
 
         while init_pos > -1:
@@ -33,26 +36,41 @@ class ReverseTemplate:
                 self.tokens.append(token_name)
 
     def _get_full_token(self, token):
+        if token not in self.__get_full_token_cache:
+            self.__get_full_token_cache[token] = (
+                self.token_sep[0] + token + self.token_sep[1]
+            )
+
         # Simply returns the token as it is in the template
         return self.token_sep[0] + token + self.token_sep[1]
 
     def _get_str_after_last_token(self):
         if not self.tokens:
             return self.template
+        elif self.__get_str_after_last_token_cache is not None:
+            return self.__get_str_after_last_token_cache
 
-        last_token_ended_at = (
-            self.template.find(self.tokens[-1]) + len(self.tokens[-1]) + 1
-        )
-        return self.template[last_token_ended_at:]
+        full_token = self._get_full_token(self.tokens[-1])
+
+        last_token_ended_at = self.template.find(full_token) + len(full_token)
+
+        self.__get_str_after_last_token_cache = self.template[last_token_ended_at:]
+
+        return self.__get_str_after_last_token_cache
 
     def _get_str_between_tokens(self, t1: str, t2: str):
+        cache_key = t1 + t2
+
+        if cache_key in self.__get_str_between_tokens_cache:
+            return self.__get_str_between_tokens_cache[cache_key]
+
         t1_at = self.template.find(t1)
         t2_at = self.template.find(t2)
 
-        if t1_at > t2_at:
-            return ""
-
-        return self.template[t1_at + len(t1) : t2_at]
+        self.__get_str_between_tokens_cache[cache_key] = self.template[
+            t1_at + len(t1) : t2_at
+        ]
+        return self.__get_str_between_tokens_cache[cache_key]
 
     def reverse(self, str_to_convert):
         if not self.tokens:
