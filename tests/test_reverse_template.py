@@ -74,7 +74,7 @@ def test_static_then_end():
 
 
 def test_repeat_reverse_works():
-    rt = ReverseTemplate("There is little to {what?} here")
+    rt = ReverseTemplate("There is {from?} to {what?} here")
 
     assert rt.reverse("There is little to nothing here")["what?"] == "nothing"
     assert rt.reverse("There is little to something here")["what?"] == "something"

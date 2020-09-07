@@ -35,7 +35,7 @@ class ReverseTemplate:
 
                 self.tokens.append(token_name)
 
-    def _get_full_token(self, token):
+    def __get_full_token(self, token):
         if token not in self.__get_full_token_cache:
             self.__get_full_token_cache[token] = (
                 self.token_sep[0] + token + self.token_sep[1]
@@ -44,13 +44,11 @@ class ReverseTemplate:
         # Simply returns the token as it is in the template
         return self.token_sep[0] + token + self.token_sep[1]
 
-    def _get_str_after_last_token(self):
-        if not self.tokens:
-            return self.template
-        elif self.__get_str_after_last_token_cache is not None:
+    def __get_str_after_last_token(self):
+        if self.__get_str_after_last_token_cache is not None:
             return self.__get_str_after_last_token_cache
 
-        full_token = self._get_full_token(self.tokens[-1])
+        full_token = self.__get_full_token(self.tokens[-1])
 
         last_token_ended_at = self.template.find(full_token) + len(full_token)
 
@@ -58,7 +56,7 @@ class ReverseTemplate:
 
         return self.__get_str_after_last_token_cache
 
-    def _get_str_between_tokens(self, t1: str, t2: str):
+    def __get_str_between_tokens(self, t1: str, t2: str):
         cache_key = t1 + t2
 
         if cache_key in self.__get_str_between_tokens_cache:
@@ -85,7 +83,7 @@ class ReverseTemplate:
         for i in range(0, tokens_len):
             values[self.tokens[i]] = None
 
-            token = self._get_full_token(self.tokens[i])
+            token = self.__get_full_token(self.tokens[i])
             token_start_pos = self.template.find(token)
 
             if value_at_pos == 0 and token_start_pos > 0:
@@ -93,14 +91,14 @@ class ReverseTemplate:
                 value_at_pos = token_start_pos
 
             if i < tokens_len - 1:
-                next_token = self._get_full_token(self.tokens[i + 1])
+                next_token = self.__get_full_token(self.tokens[i + 1])
             else:
                 next_token = None
 
             if i == tokens_len - 1:
-                static_val = self._get_str_after_last_token()
+                static_val = self.__get_str_after_last_token()
             elif next_token:
-                static_val = self._get_str_between_tokens(token, next_token)
+                static_val = self.__get_str_between_tokens(token, next_token)
 
             token_val_end_at = (
                 str_to_convert.find(static_val, value_at_pos)
